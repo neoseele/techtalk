@@ -2,7 +2,7 @@
 
 The `iptables` firewall works by interacting with the packet filtering hooks in the Linux kernel's networking stack. These kernel **hooks** are known as the Netfilter framework.
 
-`iptables` are userspace tools used to set up, maintain, and inspect the tables of IPv4 and IPv6 packet filter rules in the Linux kernel.
+`iptables` is a userspace tool used to set up, maintain, and inspect the tables of IPv4 and IPv6 packet filter rules in the Linux kernel.
 
 Kernel module `ip_tables` is the one that provide this table-based system for `iptables` to define firewall rules.
 
