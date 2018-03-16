@@ -1,12 +1,12 @@
 # What is iptables
 
-The iptables firewall works by interacting with the packet filtering hooks in the Linux kernel's networking stack. These kernel hooks are known as the netfilter framework.
+The `iptables` firewall works by interacting with the packet filtering hooks in the Linux kernel's networking stack. These kernel hooks are known as the Netfilter framework.
 
-iptables are userspace tools used to set up, maintain, and inspect the tables of IPv4 and IPv6 packet filter rules in the Linux kernel.
+`iptables` are userspace tools used to set up, maintain, and inspect the tables of IPv4 and IPv6 packet filter rules in the Linux kernel.
 
-Kernel module **ip_tables** is the one that provide this table-based system for iptables to define firewall rules.
+Kernel module `ip_tables` is the one that provide this table-based system for `iptables` to define firewall rules.
 
-If it is not loaded, iptables cmd will complain.
+If it is not loaded, `iptables` cmd will complain.
 
 ```sh
 # iptables -L
@@ -18,9 +18,9 @@ Perhaps iptables or your kernel needs to be upgraded.
 * [reference #1](https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture)
 * [reference #2](https://cateee.net/lkddb/web-lkddb/IP_NF_RAW.html)
 
-# What is iptables Tables
+# Tables
 
-`tables` are used to organize firewall rules. These tables classify rules according to the type of decisions they are used to make.
+**tables** are used to organize firewall rules. These tables classify rules according to the type of decisions they are used to make.
 
 iptables contains 5 tables:
 
@@ -104,7 +104,7 @@ The names of the built-in chains mirror the names of the Netfilter hooks they ar
 
 ## user-defined Chain
 
-The `-N` option is used to create a user chain. But like the built in chains, you must put rules in it for it to do anything. And you must have one or more rules that **jump** to it for it to ever come into play.
+The `-N` option is used to create a user chain. But like the built in chains, you must put rules in it for it to do anything. And you must have one or more rules that jump (`-j`) to it for it to ever come into play.
 
 *A packet that enters a user chain but does not match any rules in it is then returned to the calling chain for further processing.*
 
