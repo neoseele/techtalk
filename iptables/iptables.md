@@ -1,6 +1,6 @@
 # What is iptables
 
-The `iptables` firewall works by interacting with the packet filtering hooks in the Linux kernel's networking stack. These kernel hooks are known as the Netfilter framework.
+The `iptables` firewall works by interacting with the packet filtering hooks in the Linux kernel's networking stack. These kernel **hooks** are known as the Netfilter framework.
 
 `iptables` are userspace tools used to set up, maintain, and inspect the tables of IPv4 and IPv6 packet filter rules in the Linux kernel.
 
@@ -73,18 +73,18 @@ The following graph shows the flow of packet traverse through the networking sta
 The tables are shown in the order that they are actually called by the hooks.
 
 ```sh
---->PRE------>[ROUTE]--->FWD---------->POST------>
-   Raw          |       Mangle   ^    Mangle
-   Conntrack    |       Filter   |    NAT (Src)
-   Mangle       |                |    Conntrack
-   NAT (Dst)    |                |
-   (QDisc)      |             [ROUTE]
-                v                |
-                IN Filter       OUT Raw
-                |  Conntrack     ^  Conntrack
-                |  Mangle        |  Mangle
-                |                |  NAT (Dst)
-                v                |  Filter
+---> PREROUTING ------> [ROUTE] ---> FWD ----------> POSTROUTING ------>
+     Raw                   |        Mangle     ^     Mangle
+     Conntrack             |        Filter     |     NAT (Src)
+     Mangle                |                   |     Conntrack
+     NAT (Dst)             |                   |
+     (QDisc)               |                [ROUTE]
+                           v                   |
+                         INPUT Filter        OUTPUT Raw
+                           |   Conntrack       ^    Conntrack
+                           |   Mangle          |    Mangle
+                           |                   |    NAT (Dst)
+                           v                   |    Filter
 ```
 
 * [reference #1](https://www.netfilter.org/documentation/HOWTO/netfilter-hacking-HOWTO-3.html)
@@ -125,7 +125,17 @@ iptables: Too many levels of symbolic links.
 
 # Targets
 
-Each rule specifies what to do with a packet that matches. This is called a **target**, which may be a jump to a user-defined chain in the same table.
+(stole from `man iptables`)
+
+A firewall rule specifies criteria for a packet and a target.  If the packet does not match, the next rule in the chain is examined; if it does match, then the next rule is specified by the value of the target, which can be:
+
+* the name of a **user-defined chain**
+* one of the targets described in **iptables-extensions**(8)
+* one of the special values `ACCEPT`, `DROP`, or `RETURN`
+
+> **REJECT** is described in **iptables-extensions**. (`man iptables-extensions`)
+
+> **RETURN** means stop traversing this chain and resume at the next rule in the previous (calling) chain. If the end of a built-in chain is reached or a rule in a built-in chain with target RETURN is matched, the target specified by the chain policy determines the fate of the packet.
 
 # Conntrack
 
