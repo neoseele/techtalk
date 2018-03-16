@@ -15,7 +15,8 @@ iptables v1.4.21: can't initialize iptables table `filter': Table does not exist
 Perhaps iptables or your kernel needs to be upgraded.
 ```
 
-[reference](https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture)
+* [reference #1](https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture)
+* [reference #2](https://cateee.net/lkddb/web-lkddb/IP_NF_RAW.html)
 
 # What is iptables Tables
 
