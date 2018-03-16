@@ -22,7 +22,7 @@ Perhaps iptables or your kernel needs to be upgraded.
 
 **tables** are used to organize firewall rules. These tables classify rules according to the type of decisions they are used to make.
 
-iptables contains 5 tables:
+`iptables` contains 5 tables:
 
 * **raw** is used only for configuring packets so that they are exempt from **connection tracking**
 * **filter** is the default table, and is where all the actions typically associated with a firewall take place
