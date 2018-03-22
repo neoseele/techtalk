@@ -204,9 +204,15 @@ ipv4     2 tcp      6 56 CLOSE_WAIT src=10.128.0.19 dst=169.254.169.254 sport=57
 # GKE node iptables
 
 ```sh
-# k get service
-NAME              TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)        AGE
-php-svc-cluster   LoadBalancer   10.51.245.210   35.194.9.137   80:31334/TCP   51s
+# k get service --all-namespaces
+NAMESPACE     NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)         AGE
+default       kubernetes             ClusterIP      10.51.240.1     <none>         443/TCP         3d
+default       php-svc-cluster        LoadBalancer   10.51.245.210   35.194.9.137   80:31334/TCP    8m
+kube-system   default-http-backend   NodePort       10.51.247.208   <none>         80:30940/TCP    3d
+kube-system   heapster               ClusterIP      10.51.245.213   <none>         80/TCP          3d
+kube-system   kube-dns               ClusterIP      10.51.240.10    <none>         53/UDP,53/TCP   3d
+kube-system   kubernetes-dashboard   ClusterIP      10.51.254.224   <none>         443/TCP         3d
+kube-system   metrics-server         ClusterIP      10.51.252.202   <none>         443/TCP         3d
 ```
 
 ```sh
